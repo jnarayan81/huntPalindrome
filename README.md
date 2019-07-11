@@ -1,2 +1,2 @@
 # huntPalindrome
-Find palindrome/inverted repeats in ccontigs/scaffolds
+Find palindrome/inverted repeats in contigs/scaffolds
