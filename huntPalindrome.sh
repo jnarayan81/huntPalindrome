@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo -e "This is a bash scrip to check the palindromes in genome file !"
+echo -e "This is a bash scrip to check the palindromes/inverted repeats in genome file !"
 
 # split the FASTA file
 # awk -F "|" '/^>/ {close(F) ; F = $1".fasta"} {print >> F}' yourfile.fa
 
-#USAGE: ./huntPalindrome.sh -d /home/jitendra/myTools/huntPalindrome/test -g testPal.fa -t 1 -r normal -s 10000 -m inverted/direct
+#USAGE: ./huntPalindrome.sh -d /home/jitendra/myTools/huntPalindrome/test -g testPal.fa -t 1 -r normal -s 10000 -m inverted/direct/all
 
 #Location of scripts
 bioScript=./scriptBase
@@ -66,7 +66,7 @@ for ((i=0; i<${#arr[@]}; i++)); do
 	echo -e "FILE: $fname\nLOCATION: ${arr[$i]}"
 	echo "Working on ${arr[$i]}"
 	
-	#Delete if no palindrome
+	#Decide the option
 	if [ "${RULE}" == "strict" ]; then
     	echo "Strict Opted - fine !"
 		rule="fine"
@@ -76,8 +76,8 @@ for ((i=0; i<${#arr[@]}; i++)); do
 	fi
 
 	#Out directory will be of same name as fasta
-	$sibelia -s $rule --sequencesfile --graphfile --minblocksize ${MINSIZE} --visualize --gff --outdir $fname ${arr[$i]}
-	#Delete if no palindrome
+	$sibelia -s $rule --sequencesfile --graphfile --minblocksize ${MINSIZE} --visualize --gff --outdir $fname ${arr[$i]} >> sibelia.log
+	#Delete if no values/repeats
 	if [ "$(ls -A $fname)" ]; then
     	echo "Take action $fname is not Empty -> Reading GFF file"
         #Check the file for any palindrome blocks values
@@ -86,6 +86,8 @@ for ((i=0; i<${#arr[@]}; i++)); do
 		if [ $NUMOFLINES -le 3 ]; then
 			#Delete the folder as it does not contain any useful values
 		    rm -rf $fname
+		else 
+			perl $bioScript/reformatAln.pl $fname/blocks_coords.gff ${MODE} >> final.combined
 		fi
 	else
     	echo "$fname is Empty !"
@@ -116,7 +118,13 @@ for _dir in *"${pattern}"*; do
     [ -d "${_dir}" ] && dir="${_dir}"
 	mv ${dir} $outfoldername
 done
+#Get the genome size
+#gLen=$(grep -v ">" ${GENOME} | wc | awk '{print $3-$1}')
+gLen=$(grep -v ">" ${GENOME} | tr -d '\n' | wc -c)
+#echo $gLen;
+perl $bioScript/getStat.pl final.combined $gLen > final.stat
+mv final.combined $outfoldername
+mv final.stat $outfoldername
 #echo "${dir}"
 
-
-echo "hunting for Palindrome completed. Check results in $outfoldername folder..."
+echo "hunting for Palindromes completed. Check results in $outfoldername folder..."
