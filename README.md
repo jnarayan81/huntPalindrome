@@ -1,5 +1,5 @@
 # huntPalindrome
-Find palindrome/inverted repeats in contigs/scaffolds
+Find palindrome/large-scale-inverted-repeats in contigs/scaffolds/genomes
 
 # Usage
 ```
@@ -8,7 +8,7 @@ Find palindrome/inverted repeats in contigs/scaffolds
 -d Absolute path of directory
 -g genome file name / should be in directory
 -t threshold / keep it 1 -- not used by now
--r rule for synteny [loose/fine]
+-r rule for synteny [strict/normal]
 -s synteny resolution / best at 10000
 -m mode of reporting [inverted/direct/all]
 
