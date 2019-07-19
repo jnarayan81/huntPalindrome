@@ -92,7 +92,10 @@ for ((i=0; i<${#arr[@]}; i++)); do
 			perl $bioScript/reformatAln.pl $fname/blocks_coords.gff ${MODE} >> final.combined
 			#Circos command
 			if [ ${VIZ} == yes  ]; then 
-			/usr/bin/perl $circosLoc/circos -conf $fname/circos/circos.conf
+			cp -r $fname tmpFolder		
+			/usr/bin/perl $circosLoc/circos -conf tmpFolder/circos/circos.conf
+			cp -r tmpFolder/circos $fname/circos/
+			rm -rf tmpFolder
 			fi
 		fi
 	else
@@ -131,6 +134,7 @@ gLen=$(grep -v ">" ${DIRECTORY}/${GENOME} | tr -d '\n' | wc -c)
 perl $bioScript/getStat.pl final.combined $gLen > final.stat
 mv final.combined $outfoldername
 mv final.stat $outfoldername
+mv sibelia.log $outfoldername
 #echo "${dir}"
 
 echo "hunting for Palindromes completed. Check results in $outfoldername folder..."
