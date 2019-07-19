@@ -120,7 +120,7 @@ for _dir in *"${pattern}"*; do
 done
 #Get the genome size
 #gLen=$(grep -v ">" ${GENOME} | wc | awk '{print $3-$1}')
-gLen=$(grep -v ">" ${GENOME} | tr -d '\n' | wc -c)
+gLen=$(grep -v ">" ${DIRECTORY}/${GENOME} | tr -d '\n' | wc -c)
 #echo $gLen;
 perl $bioScript/getStat.pl final.combined $gLen > final.stat
 mv final.combined $outfoldername
