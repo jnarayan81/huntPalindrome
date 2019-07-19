@@ -11,6 +11,7 @@ Find palindrome/large-scale-inverted-repeats in contigs/scaffolds/genomes
 -r rule for synteny [strict/normal]
 -s synteny resolution / best at 10000
 -m mode of reporting [inverted/direct/all]
+-v visualize with circos [yes/no]
 
 ```
 
@@ -18,25 +19,25 @@ Find palindrome/large-scale-inverted-repeats in contigs/scaffolds/genomes
 
 huntPalindrome outfile columns: final.combined
 
-* REF_CHROM       Reference entry chromosome name
-* RPO_NAME        Name of the program used
-* DETAIL          Detail of program
-* REF_START       Reference start boundary estimate
-* REF_END         Reference end boundary estimate
-* REF_STRAND      Reference block strand
-* REF_BLOCK       Reference synteny blocks number
-* TAR_CHR         Targer chromosome name
-* TAR_START       Target start location
-* TAR_END         Target end location
-* TAR_STRAND      Targer block strand
-* TAR_BLOCK       Targer block number
-* REPEATS         Detail information about the repeats
+* REF_CHROM       &lt;Reference entry chromosome name
+* RPO_NAME        &lt;Name of the program used
+* DETAIL          &lt;Detail of program
+* REF_START       &lt;Reference start boundary estimate
+* REF_END         &lt;Reference end boundary estimate
+* REF_STRAND      &lt;Reference block strand
+* REF_BLOCK       &lt;Reference synteny blocks number
+* TAR_CHR         &lt;Targer chromosome name
+* TAR_START       &lt;Target start location
+* TAR_END         &lt;Target end location
+* TAR_STRAND      &lt;Targer block strand
+* TAR_BLOCK       &lt;Targer block number
+* REPEATS         &lt;Detail information about the repeats
 
 huntPalindrome result stats columns: final.stat
 
-* TYPE            Type of repeats
-* BLOCK_COUNT     Number of blocks
-* BLOCK_SIZE      Size of repeats blocks
-* GENOME_SIZE     Size of the genome
-* PERCENTAGE      Percentage of bases in irect/indirect repeats
+* TYPE            &lt;Type of repeats
+* BLOCK_COUNT     &lt;Number of blocks
+* BLOCK_SIZE      &lt;Size of repeats blocks
+* GENOME_SIZE     &lt;Size of the genome
+* PERCENTAGE      &lt;Percentage of bases in irect/indirect repeats
 
