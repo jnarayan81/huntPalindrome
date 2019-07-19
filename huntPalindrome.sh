@@ -92,7 +92,7 @@ for ((i=0; i<${#arr[@]}; i++)); do
 			perl $bioScript/reformatAln.pl $fname/blocks_coords.gff ${MODE} >> final.combined
 			#Circos command
 			if [ ${VIZ} == yes  ]; then 
-			$circosLoc/circos -conf $fname/circos/circos.conf
+			/usr/bin/perl $circosLoc/circos -conf $fname/circos/circos.conf
 			fi
 		fi
 	else
