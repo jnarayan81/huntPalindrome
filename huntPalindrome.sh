@@ -13,6 +13,7 @@ bioScript=./scriptBase
 #Set the location
 #Location of the tools
 sibelia=$bioScript/Sibelia-3.0.7-Linux/bin/Sibelia
+circosLoc=/home/urbe/Tools/circos-0.69-4/bin
 
 Red=`tput setaf 1`
 Green=`tput setaf 2`
@@ -22,7 +23,7 @@ Reset=`tput sgr0`
 source ./scriptBase/getopt.sh
 #source scriptBase/*
 
-USAGE="-d DIRECTORY -g GENOME -t THRESHOLD -r RULE -s MINSIZE -m MODE [-a START_DATE_TIME ]"
+USAGE="-d DIRECTORY -g GENOME -t THRESHOLD -r RULE -s MINSIZE -m MODE -v VIZ [-a START_DATE_TIME ]"
 parse_options "${USAGE}" ${@}
 
 echo "${Green}--:LOCATIONS:--${Reset}"
@@ -31,6 +32,7 @@ echo "${Green}Genome name provided:${Reset} ${GENOME}"
 echo "${Green}Rule for the finding:${Reset} ${RULE}"
 echo "${Green}Minimum block size:${Reset} ${MINSIZE}"
 echo "${Green}Repeats mode selected:${Reset} ${MODE}"
+echo "${Green}Repeats mode selected:${Reset} ${VIZ}"
 
 #Parameters accepted -- write absolute path of the BAM file
 
@@ -88,6 +90,10 @@ for ((i=0; i<${#arr[@]}; i++)); do
 		    rm -rf $fname
 		else 
 			perl $bioScript/reformatAln.pl $fname/blocks_coords.gff ${MODE} >> final.combined
+			#Circos command
+			if [ ${VIZ} == yes  ]; then 
+			$circosLoc/circos -conf $fname/circos/circos.conf
+			fi
 		fi
 	else
     	echo "$fname is Empty !"
