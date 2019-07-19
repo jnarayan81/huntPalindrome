@@ -94,7 +94,7 @@ for ((i=0; i<${#arr[@]}; i++)); do
 			if [ ${VIZ} == yes  ]; then 
 			cp -r $fname tmpFolder		
 			/usr/bin/perl $circosLoc/circos -conf tmpFolder/circos/circos.conf
-			cp -r tmpFolder/circos $fname/circos/
+			cp -r circos.* $fname
 			rm -rf tmpFolder
 			fi
 		fi
