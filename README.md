@@ -39,5 +39,5 @@ huntPalindrome result stats columns: final.stat
 * BLOCK_COUNT     &lt;Number of blocks
 * BLOCK_SIZE      &lt;Size of repeats blocks
 * GENOME_SIZE     &lt;Size of the genome
-* PERCENTAGE      &lt;Percentage of bases in irect/indirect repeats
+* PERCENTAGE      &lt;Percentage of bases in direct/indirect repeats
 
